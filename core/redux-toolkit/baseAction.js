@@ -3,6 +3,7 @@ import {
 } from '@reduxjs/toolkit'
 import baseAPI from './baseAPI'
 
+//<fetchAll>
 const fetchAllBaseAction = createAsyncThunk('base/fetchAll',
   async () => {
     try {
@@ -12,7 +13,9 @@ const fetchAllBaseAction = createAsyncThunk('base/fetchAll',
       console.log(`[ERROR] fetchAllBaseAction: ${{ err }}`)
     }
   })
+//</fetchAll>
 
+//<fetchById>
 const fetchBaseByIdAction = createAsyncThunk('base/fetchById',
   async (id) => {
     try {
@@ -22,7 +25,8 @@ const fetchBaseByIdAction = createAsyncThunk('base/fetchById',
       console.log(`[ERROR] fetchAllBaseAction: ${{ err }}`)
     }
   })
-
+//</fetchById>
+//<create>
 const createBaseAction = createAsyncThunk('base/create',
   async (body) => {
     try {
@@ -32,7 +36,8 @@ const createBaseAction = createAsyncThunk('base/create',
       console.log(`[ERROR] createBaseAction: ${{ err }}`)
     }
   })
-
+//</create>
+//<update>
 const updateBaseAction = createAsyncThunk('base/update',
   async (id, body) => {
     try {
@@ -42,7 +47,8 @@ const updateBaseAction = createAsyncThunk('base/update',
       console.log(`[ERROR] updateBaseAction: ${{ err }}`)
     }
   })
-
+//</update>
+//<delete>
 const deleteBaseAction = createAsyncThunk('base/delete',
   async (id) => {
     try {
@@ -52,11 +58,22 @@ const deleteBaseAction = createAsyncThunk('base/delete',
       console.log(`[ERROR] deleteBaseAction: ${{ err }}`)
     }
   })
+//</delete>
 
 export {
+  //<fetchAll>
   fetchAllBaseAction,
+  //</fetchAll>
+  //<fetchById>
   fetchBaseByIdAction,
+  //</fetchById>
+  //<create>
   createBaseAction,
+  //</create>
+  //<update>
   updateBaseAction,
+  //</update>
+  //<delete>
   deleteBaseAction
+  //</delete>
 }

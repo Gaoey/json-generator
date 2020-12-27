@@ -1,10 +1,10 @@
 [
   {
-    "url": "\\/bg_colors",
+    "url": "/bg_colors",
     "actionName": "BgColors"
   },
   {
-    "url": "\\/groups?id=${arrID}",
+    "url": "/groups?id=${arrID}",
     "actionName": "CategoryGroupList"
   }
 ]

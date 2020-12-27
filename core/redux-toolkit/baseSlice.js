@@ -2,21 +2,21 @@ import {
   createSlice
 } from '@reduxjs/toolkit'
 import {
-  // START {{create}}
+  //<create>
   createBaseAction,
-  // END {{create}}
-  // START {{delete}}
+  //</create>
+  //<delete>
   deleteBaseAction,
-  // END {{delete}}
-  // START {{fetchById}}
+  //</delete>
+  //<fetchById>
   fetchBaseByIdAction,
-  // END {{fetchById}}
-  // START {{fetchAll}}
+  //</fetchById>
+  //<fetchAll>
   fetchAllBaseAction,
-  // END {{fetchAll}}
-  // START {{update}}
+  //</fetchAll>
+  //<update>
   updateBaseAction
-  // END {{update}}
+  //</update>
 } from './baseAction'
 
 const asyncState = {
@@ -48,7 +48,7 @@ const defaultState = {
   payload: {}
 }
 
-// START {{fetchAll}}
+//<fetchAll>
 const fetchAllBaseSlice = createSlice({
   name: 'fetchAllBase',
   initialState: defaultState,
@@ -62,9 +62,9 @@ const fetchAllBaseSlice = createSlice({
     builder.addCase(fetchAllBaseAction.rejected, (state, action) => ({ ...asyncState.failed, error: action.error }))
   }
 })
-// END {{fetchAll}}
+//</fetchAll>
 
-// START {{fetchById}}
+//<fetchById>
 const fetchBaseByIdSlice = createSlice({
   name: 'fetchBaseById',
   initialState: defaultState,
@@ -78,9 +78,9 @@ const fetchBaseByIdSlice = createSlice({
     builder.addCase(fetchBaseByIdAction.rejected, (state, action) => ({ ...asyncState.failed, error: action.error }))
   }
 })
-// END {{fetchById}}
+//</fetchById>
 
-// START {{create}}
+//<create>
 const createBaseSlice = createSlice({
   name: 'createBase',
   initialState: defaultState,
@@ -94,9 +94,9 @@ const createBaseSlice = createSlice({
     builder.addCase(createBaseAction.rejected, (state, action) => ({ ...asyncState.failed, error: action.error }))
   }
 })
-// END {{create}}
+//</create>
 
-// START {{update}}
+//<update>
 const updateBaseSlice = createSlice({
   name: 'updateBase',
   initialState: defaultState,
@@ -110,9 +110,9 @@ const updateBaseSlice = createSlice({
     builder.addCase(updateBaseAction.rejected, (state, action) => ({ ...asyncState.failed, error: action.error }))
   }
 })
-// END {{update}}
+//</update>
 
-// START {{delete}}
+//<delete>
 const deleteBaseSlice = createSlice({
   name: 'deleteBase',
   initialState: defaultState,
@@ -126,56 +126,56 @@ const deleteBaseSlice = createSlice({
     builder.addCase(deleteBaseAction.rejected, (state, action) => ({ ...asyncState.failed, error: action.error }))
   }
 })
-// END {{delete}}
+//<delete>
 
 export {
-  // START {{create}}
+  //<create>
   createBaseSlice,
-  // END {{create}}
-  // START {{delete}}
+  //</create>
+  //<delete>
   deleteBaseSlice,
-  // END {{delete}}
-  // START {{fetchById}}
+  //<delete>
+  //<fetchById>
   fetchBaseByIdSlice,
-  // END {{fetchById}}
-  // START {{fetchAll}}
+  //</fetchById>
+  //<fetchAll>
   fetchAllBaseSlice,
-  // END {{fetchAll}}
-  // START {{update}}
+  //</fetchAll>
+  //<update>
   updateBaseSlice
-  // END {{update}}
+  //</update>
 }
 
 // configure 
 /*
   import {
-  // START {{create}}
+  //<create>
   createBaseSlice,
-  // END {{create}}
-  // START {{delete}}
+  //</create>
+  //<delete>
   deleteBaseSlice,
-  // END {{delete}}
-  // START {{fetchById}}
+  //<delete>
+  //<fetchById>
   fetchBaseByIdSlice,
-  // END {{fetchById}}
-  // START {{fetchAll}}
+  //</fetchById>
+  //<fetchAll>
   fetchAllBaseSlice,
-  // END {{fetchAll}}
-  // START {{update}}
+  //</fetchAll>
+  //<update>
   updateBaseSlice
-  // END {{update}}
+  //</update>
   } from '../baseSlice'
 
-  // START {{fetchAll}}
+  //<fetchAll>
   fetchAllBaseReducer:  fetchAllBaseSlice.reducer,
-  // END {{fetchAll}}
-  // START {{delete}}
+  //</fetchAll>
+  //<delete>
   deleteBaseReducer:  deleteBaseSlice.reducer,
-  // END {{delete}}
-  // START {{fetchById}}
+  //</delete>
+  //<fetchById>
   fetchBaseByIdReducer:  fetchBaseByIdSlice.reducer,
-  // END {{fetchById}}
-  // START {{update}}
+  //</fetchById>
+  //<update>
   updateBaseReducer:  updateBaseSlice.reducer
-  // END {{update}}
+  //</update>
 */
