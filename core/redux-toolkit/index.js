@@ -1,6 +1,6 @@
 import baseSlice from './baseSlice'
 
-return {
+const reducer = {
   //<create>
   createBaseReducer: baseSlice.createBaseSlice.reducer,
   //</create>
@@ -17,3 +17,5 @@ return {
   updateBaseReducer: baseSlice.updateBaseSlice.reducer
   //</update>
 }
+
+export default reducer

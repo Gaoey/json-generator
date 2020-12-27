@@ -30,3 +30,7 @@ u = update
 d = delete
 a = readAll
 ```
+
+
+Note.
+- still bug when use url ${} syntax for example /posts/${id}

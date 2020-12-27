@@ -2,15 +2,101 @@
   {
     "url": "/bg_colors",
     "actionName": "BgColors",
-    "options": "r"
+    "options": "a"
   },
   {
     "url": "/groups?id=${arrID}",
     "actionName": "CategoryGroupList",
-    "options": "rc"
+    "options": "r"
   },
   {
-    "url": "/groups?id=${arrID}",
-    "actionName": "XXXX"
+    "url": "/recommend_friends?_expand=user",
+    "actionName": "RecommendFriends",
+    "options": "a"
+  },
+  {
+    "url": "/friend_requests?_expand=user",
+    "actionName": "FriendRequests",
+    "options": "a"
+  },
+  {
+    "url": "/group_categories",
+    "actionName": "GroupCategories",
+    "options": "a"
+  },
+  {
+    "url": "/groups\\\/${id}",
+    "actionName": "GroupDetail",
+    "options": "r"
+  },
+  {
+    "url": "/group_posts?_expand=user&group.id=${id}",
+    "actionName": "GroupPosts",
+    "options": "r"
+  },
+  {
+    "url": "/groups",
+    "actionName": "GroupsRequest",
+    "options": "a"
+  },
+  {
+    "url": "/history",
+    "actionName": "GroupHistories",
+    "options": "a"
+  },
+  {
+    "url": "/search_recents?_expand=user&_expand=page&_expand=group",
+    "actionName": "HomeHistories",
+    "options": "a"
+  },
+  {
+    "url": "/products?_expand=user",
+    "actionName": "MarketplaceProducts",
+    "options": "a"
+  },
+  {
+    "url": "/notifications?_expand=post&_expand=user&_expand=group&_expand=group_post",
+    "actionName": "Notifications",
+    "options": "a"
+  },
+  {
+    "url": "/pages\\\/${id}",
+    "actionName": "PageDetail",
+    "options": "r"
+  },
+  {
+    "url": "/pages\\\/${id}\\\/watch_videos",
+    "actionName": "PageVideos",
+    "options": "r"
+  },
+  {
+    "url": "/pages\\\/${id}\\\/page_posts",
+    "actionName": "PagePhotos",
+    "options": "r"
+  },
+  {
+    "url": "/pages\\\/${pageId}\\\/page_posts?_expand=page",
+    "actionName": "PagePosts",
+    "options": "r"
+  },
+  {
+    "url": "/page_posts\\\/${id}?_expand=page",
+    "actionName": "PagePostDetail",
+    "options": "r"
+  },
+  {
+    "url": "/pages\\\/${id}\\\/events?_expand=page",
+    "actionName": "PageEvents",
+    "options": "r"
+  },
+  {
+    "url": "/posts\\\/${id}?_expand=user",
+    "actionName": "PostDetail",
+    "options": "r"
+  },
+  {
+    "url": "/posts?_expand=user",
+    "actionName": "Post",
+    "options": "a"
   }
 ]

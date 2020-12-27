@@ -1,21 +1,21 @@
 import axios from 'axios'
 
-const $name$API = {
+const baseAPI = {
   //<fetchAll>
-  fetchAll: () => axios.get("baseURL"),
+  fetchAll: () => axios.get(`baseURL`),
   //</fetchAll>
   //<fetchById>
-  fetchById: (id) => axios.get(`baseURL?id=${id}`),
+  fetchById: (id) => axios.get(`baseURL`),
   //</fetchById>
   //<create>
-  create: (body) => axios.post("baseURL", body),
+  create: (body) => axios.post(`baseURL`, body),
   //</create>
   //<update>
-  update: (id, body) => axios.put(`baseURL?id=${id}`, body),
+  update: (id, body) => axios.put(`baseURL`, body),
   //</update>
   //<delete>
-  delete: (id) => axios.delete(`baseURL?id=${id}`),
+  delete: (id) => axios.delete(`baseURL`),
   //</delete>
 }
 
-export default $name$API
+export default baseAPI
