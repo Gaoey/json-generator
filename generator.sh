@@ -1,15 +1,4 @@
-KIND=$1
-MODULE=$2
-MODEL=$3
-
-# copy base to this module
-SRC = ""
-DEST = ""
-if [[ $1 == "redux-toolkit" ]]; then
-SRC = "./core/redux-toolkit"
-DEST = "./result/redux-toolkit"
 cp -R ./base $MODULE
-
 
 for f in $(find ./$MODULE -name '*.txt'); do 
   basename "$f"
