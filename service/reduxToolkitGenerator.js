@@ -19,7 +19,7 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
   const basepath = "./core/redux-toolkit"
 
   execSync(`mkdir ${output}`)
-  jsonData.forEach(({ url, actionName, options }) => {
+  jsonData.forEach(({ url, actionName, options = "*" }) => {
     console.log({ actionName })
     // init
     const capitalName = upperFirstLetter(actionName)
@@ -65,6 +65,7 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
   })
 }
 
+// remove code between tag for example <create>(.*)</create>
 const removeCodeFromTag = (action, pathArr = []) => {
   if (pathArr.length == 0) return
   const regexp = `${slash}${slash}<${action}>/,/${slash}${slash}<${slash}${action}>`
@@ -90,6 +91,9 @@ const cleanUpComment = (pathArr = []) => {
 }
 
 const getOptionArr = (commandStr) => {
+  if (commandStr === '' || commandStr === '*') {
+    commandStr = "craud"
+  }
   const str = commandStr.toLowerCase().match(/[c|r|a|u|d]/g)
   const arr = [...str].map((c) => {
     switch (c) {

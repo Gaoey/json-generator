@@ -8,5 +8,9 @@
     "url": "/groups?id=${arrID}",
     "actionName": "CategoryGroupList",
     "options": "rc"
+  },
+  {
+    "url": "/groups?id=${arrID}",
+    "actionName": "XXXX"
   }
 ]
