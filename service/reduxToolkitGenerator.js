@@ -6,6 +6,7 @@ const FETCH_BY_ID = "fetchById"
 const FETCH_ALL = "fetchAll"
 const UPDATE = "update"
 const DELETE = "delete"
+const slash = "\\\/"
 
 export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolkit-result", opt = "cruda") {
   if (output === ".") {
@@ -30,6 +31,7 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
     const actionFile = writepath + "/baseAction.js"
     const apiFile = writepath + "/baseAPI.js"
     const sliceFile = writepath + "/baseSlice.js"
+    const indexFile = writepath + "/index.js"
     // write action 
     execSync(`sed -i '' -e "s/base/${name}/g" ${actionFile}`)
     execSync(`sed -i '' -e "s/Base/${capitalName}/g" ${actionFile}`)
@@ -40,15 +42,21 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
     // write slice
     execSync(`sed -i '' -e "s/base/${name}/g" ${sliceFile}`)
     execSync(`sed -i '' -e "s/Base/${capitalName}/g" ${sliceFile}`)
+    // write index
+    execSync(`sed -i '' -e "s/base/${name}/g" ${indexFile}`)
+    execSync(`sed -i '' -e "s/Base/${capitalName}/g" ${indexFile}`)
 
     // clean up
-    // remove from option
+    // remove action
+
     actionToRemove.forEach(action => {
-      execSync(`sed -i '' -e "/(<${action}>).+(<\/${action}>)/d" ${actionFile}`)
-      execSync(`sed -i '' -e "/(<${action}>).+(<\/${action}>)/d" ${sliceFile}`)
+      const regexp = `${slash}${slash}<${action}>/,/${slash}${slash}<${slash}${action}>`
+      execSync(`sed -i '' -e "/${regexp}/d" ${actionFile}`)
+      execSync(`sed -i '' -e "/${regexp}/d" ${sliceFile}`)
+      // execSync(`sed -i '' -e "/${regexp}/d" ${indexFile}`)
     })
     // remove comment from option
-    cleanUpComment([actionFile, sliceFile])
+    cleanUpComment([actionFile, sliceFile, indexFile])
 
     // rename
     execSync(`mv ${actionFile} ${writepath}/${name}Action.js`)
@@ -60,16 +68,16 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
 const cleanUpComment = (arr = []) => {
   if (arr.length == 0) return
   arr.forEach(path => {
-    execSync(`sed -i '' -e "/\/\/<${CREATE}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/</${CREATE}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/<${FETCH_BY_ID}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/</${FETCH_BY_ID}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/<${FETCH_ALL}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/</${FETCH_ALL}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/<${DELETE}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/</${DELETE}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/<${UPDATE}>/d" ${path}`)
-    execSync(`sed -i '' -e "/\/\/</${UPDATE}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${CREATE}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${slash}${CREATE}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${FETCH_BY_ID}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${slash}${FETCH_BY_ID}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${FETCH_ALL}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${slash}${FETCH_ALL}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${DELETE}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${slash}${DELETE}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${UPDATE}>/d" ${path}`)
+    execSync(`sed -i '' -e "/${slash}${slash}<${slash}${UPDATE}>/d" ${path}`)
   })
 }
 
