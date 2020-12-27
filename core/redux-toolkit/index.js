@@ -1,6 +1,9 @@
 import baseSlice from './baseSlice'
 
 return {
+  //<create>
+  createBaseReducer: baseSlice.createBaseSlice.reducer,
+  //</create>
   //<fetchAll>
   fetchAllBaseReducer: baseSlice.fetchAllBaseSlice.reducer,
   //</fetchAll>

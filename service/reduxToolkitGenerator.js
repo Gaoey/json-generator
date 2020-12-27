@@ -53,7 +53,7 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
       const regexp = `${slash}${slash}<${action}>/,/${slash}${slash}<${slash}${action}>`
       execSync(`sed -i '' -e "/${regexp}/d" ${actionFile}`)
       execSync(`sed -i '' -e "/${regexp}/d" ${sliceFile}`)
-      // execSync(`sed -i '' -e "/${regexp}/d" ${indexFile}`)
+      execSync(`sed -i '' -e "/${regexp}/d" ${indexFile}`)
     })
     // remove comment from option
     cleanUpComment([actionFile, sliceFile, indexFile])
