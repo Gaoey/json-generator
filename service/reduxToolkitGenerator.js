@@ -8,20 +8,18 @@ const UPDATE = "update"
 const DELETE = "delete"
 const slash = "\\\/"
 
-export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolkit-result", opt = "cruda") {
+export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolkit-result") {
   if (output === ".") {
     output = "./redux-toolkit-result"
   }
   // read input data
   const result = fs.readFileSync(jsonFile)
   const jsonData = JSON.parse(result)
-  const options = getOptionArr(opt)
-  const actionToRemove = [CREATE, FETCH_BY_ID, FETCH_ALL, UPDATE, DELETE].filter(a => !options.includes(a))
   // read base folder
   const basepath = "./core/redux-toolkit"
 
   execSync(`mkdir ${output}`)
-  jsonData.forEach(({ url, actionName }) => {
+  jsonData.forEach(({ url, actionName, options }) => {
     console.log({ actionName })
     const capitalName = upperFirstLetter(actionName)
     const name = lowerFirstLetter(actionName)
@@ -48,15 +46,17 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
 
     // clean up
     // remove action
-
+    const optionsArr = getOptionArr(options)
+    const actionToRemove = [CREATE, FETCH_BY_ID, FETCH_ALL, UPDATE, DELETE].filter(a => !optionsArr.includes(a))
     actionToRemove.forEach(action => {
       const regexp = `${slash}${slash}<${action}>/,/${slash}${slash}<${slash}${action}>`
       execSync(`sed -i '' -e "/${regexp}/d" ${actionFile}`)
       execSync(`sed -i '' -e "/${regexp}/d" ${sliceFile}`)
       execSync(`sed -i '' -e "/${regexp}/d" ${indexFile}`)
+      execSync(`sed -i '' -e "/${regexp}/d" ${apiFile}`)
     })
     // remove comment from option
-    cleanUpComment([actionFile, sliceFile, indexFile])
+    cleanUpComment([actionFile, sliceFile, indexFile, apiFile])
 
     // rename
     execSync(`mv ${actionFile} ${writepath}/${name}Action.js`)
