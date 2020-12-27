@@ -126,15 +126,15 @@ const deleteBaseSlice = createSlice({
     builder.addCase(deleteBaseAction.rejected, (state, action) => ({ ...asyncState.failed, error: action.error }))
   }
 })
-//<delete>
+//</delete>
 
-export {
+const baseSlice = {
   //<create>
   createBaseSlice,
   //</create>
   //<delete>
   deleteBaseSlice,
-  //<delete>
+  //</delete>
   //<fetchById>
   fetchBaseByIdSlice,
   //</fetchById>
@@ -145,3 +145,5 @@ export {
   updateBaseSlice
   //</update>
 }
+
+export default baseSlice
