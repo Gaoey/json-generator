@@ -1,7 +1,10 @@
 ## redux-toolkit generator
 ### usage
 ```
-npm run start -- redux-toolkit ./mock.json ./result // default is all CRUD, output file is ./result
+npm run start -- [[KIND]] [[JSON INPUT]] [[OUTPUT]]
+
+ex.
+npm run start -- redux-toolkit ./mock.json ./result 
 ```
 ### mock.json example
 ```
