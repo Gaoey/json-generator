@@ -21,15 +21,17 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
   execSync(`mkdir ${output}`)
   jsonData.forEach(({ url, actionName, options }) => {
     console.log({ actionName })
+    // init
     const capitalName = upperFirstLetter(actionName)
     const name = lowerFirstLetter(actionName)
-
     const writepath = `${output}/${name}`
-    execSync(`cp -R ${basepath} ${writepath}`)
     const actionFile = writepath + "/baseAction.js"
     const apiFile = writepath + "/baseAPI.js"
     const sliceFile = writepath + "/baseSlice.js"
     const indexFile = writepath + "/index.js"
+
+    // process
+    execSync(`cp -R ${basepath} ${writepath}`)
     // write action 
     execSync(`sed -i '' -e "s/base/${name}/g" ${actionFile}`)
     execSync(`sed -i '' -e "s/Base/${capitalName}/g" ${actionFile}`)
@@ -45,18 +47,16 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
     execSync(`sed -i '' -e "s/Base/${capitalName}/g" ${indexFile}`)
 
     // clean up
-    // remove action
     const optionsArr = getOptionArr(options)
-    const actionToRemove = [CREATE, FETCH_BY_ID, FETCH_ALL, UPDATE, DELETE].filter(a => !optionsArr.includes(a))
-    actionToRemove.forEach(action => {
-      const regexp = `${slash}${slash}<${action}>/,/${slash}${slash}<${slash}${action}>`
-      execSync(`sed -i '' -e "/${regexp}/d" ${actionFile}`)
-      execSync(`sed -i '' -e "/${regexp}/d" ${sliceFile}`)
-      execSync(`sed -i '' -e "/${regexp}/d" ${indexFile}`)
-      execSync(`sed -i '' -e "/${regexp}/d" ${apiFile}`)
-    })
+    const actionsList = [CREATE, FETCH_BY_ID, FETCH_ALL, UPDATE, DELETE]
+    const filesList = [actionFile, sliceFile, indexFile, apiFile]
+
+    // remove action
+    const actionsListToRemove = actionsList.filter(a => !optionsArr.includes(a))
+    actionsListToRemove.forEach(action => removeCodeFromTag(action, filesList))
+
     // remove comment from option
-    cleanUpComment([actionFile, sliceFile, indexFile, apiFile])
+    cleanUpComment(filesList)
 
     // rename
     execSync(`mv ${actionFile} ${writepath}/${name}Action.js`)
@@ -65,9 +65,17 @@ export default function reduxToolkitGenerator(jsonFile, output = "./redux-toolki
   })
 }
 
-const cleanUpComment = (arr = []) => {
-  if (arr.length == 0) return
-  arr.forEach(path => {
+const removeCodeFromTag = (action, pathArr = []) => {
+  if (pathArr.length == 0) return
+  const regexp = `${slash}${slash}<${action}>/,/${slash}${slash}<${slash}${action}>`
+  pathArr.forEach(path => {
+    execSync(`sed -i '' -e "/${regexp}/d" ${path}`)
+  })
+}
+
+const cleanUpComment = (pathArr = []) => {
+  if (pathArr.length == 0) return
+  pathArr.forEach(path => {
     execSync(`sed -i '' -e "/${slash}${slash}<${CREATE}>/d" ${path}`)
     execSync(`sed -i '' -e "/${slash}${slash}<${slash}${CREATE}>/d" ${path}`)
     execSync(`sed -i '' -e "/${slash}${slash}<${FETCH_BY_ID}>/d" ${path}`)
