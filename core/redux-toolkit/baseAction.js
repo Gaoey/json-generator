@@ -11,6 +11,7 @@ const fetchAllBaseAction = createAsyncThunk('base/fetchAll',
       return response.data
     } catch (err) {
       console.log(`[ERROR] fetchAllBaseAction: ${{ err }}`)
+      console.log(JSON.stringify(err.response.data))
     }
   })
 //</fetchAll>
@@ -23,6 +24,7 @@ const fetchBaseByIdAction = createAsyncThunk('base/fetchById',
       return response.data
     } catch (err) {
       console.log(`[ERROR] fetchAllBaseAction: ${{ err }}`)
+      console.log(JSON.stringify(err.response.data))
     }
   })
 //</fetchById>
@@ -34,6 +36,7 @@ const createBaseAction = createAsyncThunk('base/create',
       return response.data
     } catch (err) {
       console.log(`[ERROR] createBaseAction: ${{ err }}`)
+      console.log(JSON.stringify(err.response.data))
     }
   })
 //</create>
@@ -45,6 +48,7 @@ const updateBaseAction = createAsyncThunk('base/update',
       return response.data
     } catch (err) {
       console.log(`[ERROR] updateBaseAction: ${{ err }}`)
+      console.log(JSON.stringify(err.response.data))
     }
   })
 //</update>
@@ -56,6 +60,7 @@ const deleteBaseAction = createAsyncThunk('base/delete',
       return response.data
     } catch (err) {
       console.log(`[ERROR] deleteBaseAction: ${{ err }}`)
+      console.log(JSON.stringify(err.response.data))
     }
   })
 //</delete>
