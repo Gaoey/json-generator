@@ -21,7 +21,7 @@ const fetchBaseByIdAction = createAsyncThunk('base/fetchById',
   async (id) => {
     try {
       const response = await baseAPI.fetchById(id)
-      return response.data
+      return response.data.data
     } catch (err) {
       console.log(`[ERROR] fetchAllBaseAction: ${{ err }}`)
       console.log(JSON.stringify(err.response.data))
@@ -33,7 +33,7 @@ const createBaseAction = createAsyncThunk('base/create',
   async (body) => {
     try {
       const response = await baseAPI.create(body)
-      return response.data
+      return response.data.data
     } catch (err) {
       console.log(`[ERROR] createBaseAction: ${{ err }}`)
       console.log(JSON.stringify(err.response.data))
@@ -45,7 +45,7 @@ const updateBaseAction = createAsyncThunk('base/update',
   async (id, body) => {
     try {
       const response = await baseAPI.update(id, body)
-      return response.data
+      return response.data.data
     } catch (err) {
       console.log(`[ERROR] updateBaseAction: ${{ err }}`)
       console.log(JSON.stringify(err.response.data))
@@ -57,7 +57,7 @@ const deleteBaseAction = createAsyncThunk('base/delete',
   async (id) => {
     try {
       const response = await baseAPI.delete(id)
-      return response.data
+      return response.data.data
     } catch (err) {
       console.log(`[ERROR] deleteBaseAction: ${{ err }}`)
       console.log(JSON.stringify(err.response.data))

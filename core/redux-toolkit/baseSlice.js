@@ -53,7 +53,7 @@ const fetchAllBaseSlice = createSlice({
   name: 'fetchAllBase',
   initialState: defaultState,
   reducers: {
-    reset: (state) => (state = defaultState),
+    reset: () => defaultState,
     resetAsyncState: (state) => ({ ...state, ...asyncState.default })
   },
   extraReducers: (builder) => {
@@ -69,7 +69,7 @@ const fetchBaseByIdSlice = createSlice({
   name: 'fetchBaseById',
   initialState: defaultState,
   reducers: {
-    reset: (state) => (state = defaultState),
+    reset: () => defaultState,
     resetAsyncState: (state) => ({ ...state, ...asyncState.default })
   },
   extraReducers: (builder) => {
@@ -85,7 +85,7 @@ const createBaseSlice = createSlice({
   name: 'createBase',
   initialState: defaultState,
   reducers: {
-    reset: (state) => (state = defaultState),
+    reset: () => defaultState,
     resetAsyncState: (state) => ({ ...state, ...asyncState.default })
   },
   extraReducers: (builder) => {
@@ -101,7 +101,7 @@ const updateBaseSlice = createSlice({
   name: 'updateBase',
   initialState: defaultState,
   reducers: {
-    reset: (state) => (state = defaultState),
+    reset: () => defaultState,
     resetAsyncState: (state) => ({ ...state, ...asyncState.default })
   },
   extraReducers: (builder) => {
@@ -117,7 +117,7 @@ const deleteBaseSlice = createSlice({
   name: 'deleteBase',
   initialState: defaultState,
   reducers: {
-    reset: (state) => (state = defaultState),
+    reset: () => defaultState,
     resetAsyncState: (state) => ({ ...state, ...asyncState.default })
   },
   extraReducers: (builder) => {
